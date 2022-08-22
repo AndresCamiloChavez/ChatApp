@@ -1,4 +1,11 @@
+import 'dart:math';
+
+import 'package:chat_app/widgets/button_blue.dart';
+import 'package:chat_app/widgets/custom_input.dart';
 import 'package:flutter/material.dart';
+
+import '../widgets/labels.dart';
+import '../widgets/logo.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -11,48 +18,15 @@ class LoginPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            _Logo(),
+            Logo(),
             _Form(),
-            _Labels(),
+            Labels(),
             Text(
               'Términos y condiciones de uso',
               style: TextStyle(fontWeight: FontWeight.w200),
             )
           ],
         ),
-      ),
-    );
-  }
-}
-
-class _Labels extends StatelessWidget {
-  const _Labels({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Text(
-            '¿No tienes cuenta?',
-            style: TextStyle(
-                color: Colors.black54,
-                fontSize: 15,
-                fontWeight: FontWeight.w300),
-          ),
-          SizedBox(
-            height: 15,
-          ),
-          Text(
-            'Crea una ahora!',
-            style: TextStyle(
-                color: Colors.blue[600],
-                fontSize: 18,
-                fontWeight: FontWeight.bold),
-          )
-        ],
       ),
     );
   }
@@ -68,6 +42,8 @@ class _Form extends StatefulWidget {
 }
 
 class _FormState extends State<_Form> {
+  final emailCtrl = TextEditingController();
+  final passwordCtrl = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -75,40 +51,23 @@ class _FormState extends State<_Form> {
       padding: const EdgeInsets.symmetric(horizontal: 50),
       child: Column(
         children: [
-          
-          MaterialButton(
-            onPressed: () {},
-            child: Text('Ingresar'),
-          )
+          CustomInput(
+            icon: Icons.email,
+            placeholder: 'Correo electrónico',
+            keyboardType: TextInputType.emailAddress,
+            textControl: emailCtrl,
+          ),
+          CustomInput(
+            icon: Icons.password,
+            placeholder: 'Contraseña',
+            keyboardType: TextInputType.visiblePassword,
+            textControl: passwordCtrl,
+            isPassword: true,
+          ),
+          ButtonBlue(text: 'Ingresar', color: Colors.blue, onPressed: (){
+            print('LOG dando click sobre el botón ${ 1 }');
+          })
         ],
-      ),
-    );
-  }
-}
-
-class _Logo extends StatelessWidget {
-  const _Logo({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        margin: EdgeInsets.only(top: 50),
-        width: 170,
-        child: Column(
-          children: [
-            Image(image: AssetImage('assets/tag-logo.png')),
-            SizedBox(
-              height: 20,
-            ),
-            Text(
-              'Messanger',
-              style: TextStyle(fontSize: 30),
-            )
-          ],
-        ),
       ),
     );
   }
