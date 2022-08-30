@@ -2,8 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class Labels extends StatelessWidget {
+  final String ruta;
+  final String label;
+  final String labelRute;
+
   const Labels({
     Key? key,
+    required this.ruta,
+    required this.labelRute,
+    required this.label,
   }) : super(key: key);
 
   @override
@@ -12,7 +19,7 @@ class Labels extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            '¿No tienes cuenta?',
+            label,
             style: TextStyle(
                 color: Colors.black54,
                 fontSize: 15,
@@ -21,12 +28,17 @@ class Labels extends StatelessWidget {
           SizedBox(
             height: 15,
           ),
-          Text(
-            'Crea una ahora!',
-            style: TextStyle(
-                color: Colors.blue[600],
-                fontSize: 18,
-                fontWeight: FontWeight.bold),
+          GestureDetector(
+            onTap: () {
+              Navigator.pushReplacementNamed(context, ruta);
+            },
+            child: Text(
+              labelRute,
+              style: TextStyle(
+                  color: Colors.blue[600],
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold),
+            ),
           )
         ],
       ),

@@ -17,10 +17,10 @@ class LoginPage extends StatelessWidget {
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Logo(),
+          children: const [
+            Logo(title: 'Messager',),
             _Form(),
-            Labels(),
+            Labels(ruta:'register', labelRute: 'Crea una ahora!', label: '¿No tienes cuenta?',),
             Text(
               'Términos y condiciones de uso',
               style: TextStyle(fontWeight: FontWeight.w200),
@@ -65,7 +65,6 @@ class _FormState extends State<_Form> {
             isPassword: true,
           ),
           ButtonBlue(text: 'Ingresar', color: Colors.blue, onPressed: (){
-            print('LOG dando click sobre el botón ${ 1 }');
           })
         ],
       ),

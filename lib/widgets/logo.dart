@@ -1,8 +1,9 @@
 import 'package:flutter/widgets.dart';
 
 class Logo extends StatelessWidget {
+  final String title;
   const Logo({
-    Key? key,
+    Key? key, required this.title,
   }) : super(key: key);
 
   @override
@@ -18,7 +19,7 @@ class Logo extends StatelessWidget {
               height: 20,
             ),
             Text(
-              'Messanger',
+              title,
               style: TextStyle(fontSize: 30),
             )
           ],
