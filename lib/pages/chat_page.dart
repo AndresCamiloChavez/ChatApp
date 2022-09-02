@@ -11,18 +11,18 @@ class ChatPage extends StatefulWidget {
   State<ChatPage> createState() => _ChatPageState();
 }
 
-class _ChatPageState extends State<ChatPage> {
+class _ChatPageState extends State<ChatPage> with TickerProviderStateMixin {
   final _textController = new TextEditingController();
   final _focusNode = new FocusNode();
 
   List<ChatMessage> messages = [
-    ChatMessage(texto: ' Esto es un texto de prueba', uid: '123'),
-    ChatMessage(texto: ' Esto es un texto de prueba', uid: '4324'),
-    ChatMessage(texto: ' Esto es un texto de prueba', uid: '133'),
-    ChatMessage(
-        texto:
-            ' Esto es un tfdfaffdfafdsfasfaf dfafavaf afasfkf dksfnsafasfexto de prueba',
-        uid: '123'),
+    // ChatMessage(texto: ' Esto es un texto de prueba', uid: '123',),
+    // ChatMessage(texto: ' Esto es un texto de prueba', uid: '4324',),
+    // ChatMessage(texto: ' Esto es un texto de prueba', uid: '133',),
+    // ChatMessage(
+    //     texto:
+    //         ' Esto es un tfdfaffdfafdsfasfaf dfafavaf afasfkf dksfnsafasfexto de prueba',
+    //     uid: '123'),
   ];
   bool _estaEscribiendo = false;
 
@@ -132,9 +132,26 @@ class _ChatPageState extends State<ChatPage> {
 
     setState(() {
       // messages = List<ChatMessage>.from(messages.reversed);
-      messages.insert(0,
-          ChatMessage(texto: text, uid: text.length.isEven ? '123' : '143'));
+      final newMessage = ChatMessage(
+        texto: text,
+        uid: text.length.isEven ? '123' : '143',
+        animationController: AnimationController(
+            vsync: this, duration: Duration(milliseconds: 200)),
+      );
+      messages.insert(0, newMessage);
+      newMessage.animationController.forward();
+
       _estaEscribiendo = false;
     });
+  }
+
+  @override
+  void dispose() {
+    // TODO: Off del socket
+    //limpiar cada una de las instancias del controllado
+    for (var message in messages) {
+      message.animationController.dispose();
+    }
+    super.dispose();
   }
 }
