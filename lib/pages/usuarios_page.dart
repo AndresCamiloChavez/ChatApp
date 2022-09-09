@@ -14,11 +14,11 @@ class _UsuariosPageState extends State<UsuariosPage> {
       RefreshController(initialRefresh: false);
 
   final usuarios = [
-    Usuario(email: "test1@email.com", name: "Andres", uid: "1", online: true),
+    Usuario(email: "test1@email.com", nombre: "Andres", uid: "1", online: true),
     Usuario(
-        email: "test2@email.com", name: "Alejandra", uid: "2", online: false),
-    Usuario(email: "test3@email.com", name: "Maria", uid: "3", online: false),
-    Usuario(email: "test4@email.com", name: "Diana", uid: "4", online: true),
+        email: "test2@email.com", nombre: "Alejandra", uid: "2", online: false),
+    Usuario(email: "test3@email.com", nombre: "Maria", uid: "3", online: false),
+    Usuario(email: "test4@email.com", nombre: "Diana", uid: "4", online: true),
   ];
   @override
   Widget build(BuildContext context) {
@@ -76,11 +76,11 @@ class _UsuariosPageState extends State<UsuariosPage> {
 
   ListTile _usuarioListTile(Usuario usuario) {
     return ListTile(
-      title: Text(usuario.name),
+      title: Text(usuario.nombre),
       subtitle: Text(usuario.email),
       leading: CircleAvatar(
           backgroundColor: Colors.blue[100],
-          child: Text('${usuario.name.toUpperCase().substring(0, 2)}')),
+          child: Text('${usuario.nombre.toUpperCase().substring(0, 2)}')),
       trailing: Container(
         width: 10,
         height: 10,

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ButtonBlue extends StatelessWidget {
   final String text;
   final Color color;
-  final Function() onPressed;
+  final Function()? onPressed;
 
   const ButtonBlue({Key? key, required this.text, required this.color, required this.onPressed})
       : super(key: key);

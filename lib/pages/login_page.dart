@@ -19,9 +19,15 @@ class LoginPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: const [
-            Logo(title: 'Messager',),
+            Logo(
+              title: 'Messager',
+            ),
             _Form(),
-            Labels(ruta:'register', labelRute: 'Crea una ahora!', label: '¿No tienes cuenta?',),
+            Labels(
+              ruta: 'register',
+              labelRute: 'Crea una ahora!',
+              label: '¿No tienes cuenta?',
+            ),
             Text(
               'Términos y condiciones de uso',
               style: TextStyle(fontWeight: FontWeight.w200),
@@ -66,9 +72,13 @@ class _FormState extends State<_Form> {
             textControl: passwordCtrl,
             isPassword: true,
           ),
-          ButtonBlue(text: 'Ingresar', color: Colors.blue, onPressed: (){
-            authProvider.login(emailCtrl.text, passwordCtrl.text);
-          })
+          ButtonBlue(
+              text: 'Ingresar',
+              color: Colors.blue,
+              onPressed: authProvider.autenticando ? null : () {
+                authProvider.login(emailCtrl.text, passwordCtrl.text);
+                
+              })
         ],
       ),
     );
