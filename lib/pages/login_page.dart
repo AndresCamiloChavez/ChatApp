@@ -1,9 +1,10 @@
 import 'dart:math';
 
+import 'package:chat_app/services/auth_service.dart';
 import 'package:chat_app/widgets/button_blue.dart';
 import 'package:chat_app/widgets/custom_input.dart';
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
 import '../widgets/labels.dart';
 import '../widgets/logo.dart';
 
@@ -46,6 +47,7 @@ class _FormState extends State<_Form> {
   final passwordCtrl = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthService>(context);
     return Container(
       margin: const EdgeInsets.only(top: 40),
       padding: const EdgeInsets.symmetric(horizontal: 50),
@@ -65,6 +67,7 @@ class _FormState extends State<_Form> {
             isPassword: true,
           ),
           ButtonBlue(text: 'Ingresar', color: Colors.blue, onPressed: (){
+            authProvider.login(emailCtrl.text, passwordCtrl.text);
           })
         ],
       ),
